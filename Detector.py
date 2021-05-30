@@ -69,7 +69,7 @@ def main():
       print('Subiendo imagen')
       with open(img_output, "rb") as file:
           # use FTP's STOR command to upload the file
-          ftp.storbinary(f"STOR output.jpg", file)
+          ftp.storbinary(f"STOR /public_html/output.jpg", file)
 
     if not objs:
       print('No objects detected.')
