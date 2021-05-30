@@ -8,8 +8,11 @@ import requests # to get image from the web
 import shutil # to save it locally
 import json
 import os
+import ftplib
 
-
+FTP_HOST = "igromi.com"
+FTP_USER = "igromi"
+FTP_PASS = "diccionarioAvanza12"
 
 def main():
   model='model.tflite'
@@ -59,6 +62,9 @@ def main():
       #print('box =', box)
       draw.rectangle(box, outline='red')
       os.system('curl -v -X POST -d "{\"'+labels[obj.label_id]+'\":1}" iot.igromi.com:8080/api/v1/imagina12/telemetry --header "Content-Type:application/json"')
+      with open(filename, "rb") as file:
+          # use FTP's STOR command to upload the file
+          ftp.storbinary(f"STOR {output.jpg}", file)
 
     if not objs:
       print('No objects detected.')
