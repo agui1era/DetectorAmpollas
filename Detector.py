@@ -26,6 +26,7 @@ def main():
   ftp = ftplib.FTP(FTP_HOST, FTP_USER, FTP_PASS)
   # force UTF-8 encoding
   ftp.encoding = "utf-8" 
+  filename_ftp='output.jpg'
 
   cap = cv2.VideoCapture(0) # video capture source camera (Here webcam of laptop) 
   filename =  img_input
@@ -67,9 +68,9 @@ def main():
       #print('box =', box)
       draw.rectangle(box, outline='red')
       os.system('curl -v -X POST -d "{\"'+labels[obj.label_id]+'\":1}" iot.igromi.com:8080/api/v1/imagina12/telemetry --header "Content-Type:application/json"')
-      with open(filename, "wb") as file:
+      with open(filename_ftp, "rb") as file:
           # use FTP's STOR command to upload the file
-          ftp.storbinary(f"STOR output.jpg", file)
+          ftp.storbinary(f"STOR {filename_ftp}", file)
 
     if not objs:
       print('No objects detected.')
