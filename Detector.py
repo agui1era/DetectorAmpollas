@@ -26,7 +26,7 @@ def main():
   ftp = ftplib.FTP(FTP_HOST, FTP_USER, FTP_PASS)
   # force UTF-8 encoding
   ftp.encoding = "utf-8" 
-  
+
   cap = cv2.VideoCapture(0) # video capture source camera (Here webcam of laptop) 
   filename =  img_input
 
@@ -37,9 +37,7 @@ def main():
 
   while cv2.waitKey(1) & 0xFF != ord('q'):
     # Open the url image, set stream to True, this will return the stream content.
-    ampolla=0
 
-  
     ret,frame = cap.read() # return a single frame in variable `frame`
     cv2.imwrite(img_input,frame)   
    
@@ -71,7 +69,7 @@ def main():
       print('Subiendo imagen')
       with open(img_output, "rb") as file:
           # use FTP's STOR command to upload the file
-          ftp.storbinary(f"STOR {img_output}", file)
+          ftp.storbinary(f"STOR output.jpg", file)
 
     if not objs:
       print('No objects detected.')
