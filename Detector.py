@@ -67,7 +67,7 @@ def main():
       #print('box =', box)
       draw.rectangle(box, outline='red')
       os.system('curl -v -X POST -d "{\"'+labels[obj.label_id]+'\":1}" iot.igromi.com:8080/api/v1/imagina12/telemetry --header "Content-Type:application/json"')
-      with open(filename, "rb") as file:
+      with open(filename, "wb") as file:
           # use FTP's STOR command to upload the file
           ftp.storbinary(f"STOR output.jpg", file)
 
