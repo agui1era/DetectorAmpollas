@@ -70,7 +70,7 @@ def main():
     
     #cv2.namedWindow("window", cv2.WND_PROP_FULLSCREEN)
     #cv2.setWindowProperty("window",cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
-    cv2.imshow("window",image)
+    #cv2.imshow("window",image)
     
       #closing all open windows  
   cv2.destroyAllWindows()   
