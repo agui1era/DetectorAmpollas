@@ -19,7 +19,7 @@ def main():
   limite=0.4
   cantidad=150
  
-  cap = cv2.VideoCapture(1) # video capture source camera (Here webcam of laptop) 
+  cap = cv2.VideoCapture(0) # video capture source camera (Here webcam of laptop) 
   filename =  img_input
 
   # Initialize engine.
