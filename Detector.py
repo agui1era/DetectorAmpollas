@@ -42,7 +42,7 @@ def main():
     # Open image.
     img = Image.open(img_input).convert('RGB')
     #Make the new image half the width and half the height of the original image
-    img = img.resize((round(img.size[0]*0.5), round(img.size[1]*0.5)))
+    img = img.resize((round(img.size[0]*0.1), round(img.size[1]*0.1)))
  
     draw = ImageDraw.Draw(img)
    
