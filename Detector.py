@@ -4,11 +4,9 @@ from edgetpu.detection.engine import DetectionEngine
 from edgetpu.utils import dataset_utils
 from PIL import Image
 from PIL import ImageDraw
-import requests # to get image from the web
-import shutil # to save it locally
-import json
 import os
 import ftplib
+import time
 
 FTP_HOST = "igromi.com"
 FTP_USER = "igromi"
@@ -70,6 +68,7 @@ def main():
       with open(img_output, "rb") as file:
           # use FTP's STOR command to upload the file
           ftp.storbinary(f"STOR /www/output.jpg", file)
+          time.sleep(2)
 
     if not objs:
       print('No objects detected.')
