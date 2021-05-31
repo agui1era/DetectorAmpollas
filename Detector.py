@@ -42,7 +42,7 @@ def main():
     # Open image.
     img = Image.open(img_input).convert('RGB')
     #Make the new image half the width and half the height of the original image
-    img = img.resize((round(img.size[0]*0.1), round(img.size[1]*0.1)))
+    img = img.resize((round(img.size[0]*0.2), round(img.size[1]*0.2)))
  
     draw = ImageDraw.Draw(img)
    
@@ -68,7 +68,6 @@ def main():
       with open(img_output, "rb") as file:
           # use FTP's STOR command to upload the file
           ftp.storbinary(f"STOR /www/output.jpg", file)
-          time.sleep(2)
 
     if not objs:
       print('No objects detected.')
