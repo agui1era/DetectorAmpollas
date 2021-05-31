@@ -27,7 +27,7 @@ def main():
   # force UTF-8 encoding
   ftp.encoding = "utf-8" 
 
-  cap = cv2.VideoCapture(0) # video capture source camera (Here webcam of laptop) 
+  cap = cv2.VideoCapture(1) # video capture source camera (Here webcam of laptop) 
   filename =  img_input
 
   # Initialize engine.
