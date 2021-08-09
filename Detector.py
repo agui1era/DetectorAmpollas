@@ -62,7 +62,6 @@ def main():
       box = obj.bounding_box.flatten().tolist()
       #print('box =', box)
       draw.rectangle(box, outline='red')
-      os.system('curl -v -X POST -d "{\"'+labels[obj.label_id]+'\":1}" iot.igromi.com:8080/api/v1/imagina12/telemetry --header "Content-Type:application/json"')
       
       print('Subiendo imagen')
       with open(img_output, "rb") as file:
@@ -77,9 +76,9 @@ def main():
       img.save(img_output)
     image = cv2.imread(img_output) 
     
-    #cv2.namedWindow("window", cv2.WND_PROP_FULLSCREEN)
+    cv2.namedWindow("window", cv2.WND_PROP_FULLSCREEN)
     #cv2.setWindowProperty("window",cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
-    #cv2.imshow("window",image)
+    cv2.imshow("window",image)
     
       #closing all open windows  
   cv2.destroyAllWindows()   
