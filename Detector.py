@@ -8,10 +8,6 @@ import os
 import ftplib
 import time
 
-FTP_HOST = "igromi.com"
-FTP_USER = "igromi"
-FTP_PASS = "diccionarioAvanza12"
-
 def main():
   model='model.tflite'
   labels='labels.txt'
@@ -19,13 +15,8 @@ def main():
   img_output='output.jpg'
   limite=0.4
   cantidad=150
- 
- # connect to the FTP server
-  ftp = ftplib.FTP(FTP_HOST, FTP_USER, FTP_PASS)
-  # force UTF-8 encoding
-  ftp.encoding = "utf-8" 
 
-  cap = cv2.VideoCapture(1) # video capture source camera (Here webcam of laptop) 
+  cap = cv2.VideoCapture(0) # video capture source camera (Here webcam of laptop) 
   filename =  img_input
 
   # Initialize engine.
