@@ -4,17 +4,15 @@ from edgetpu.detection.engine import DetectionEngine
 from edgetpu.utils import dataset_utils
 from PIL import Image
 from PIL import ImageDraw
-import os
-import ftplib
-import time
 
 def main():
   model='model.tflite'
   labels='labels.txt'
   img_input='input.jpg'
   img_output='output.jpg'
-  limite=0.4
+  limite=0.5
   cantidad=150
+  ampolla=0
 
   cap = cv2.VideoCapture(0) # video capture source camera (Here webcam of laptop) 
   filename =  img_input
@@ -33,7 +31,7 @@ def main():
     # Open image.
     img = Image.open(img_input).convert('RGB')
     #Make the new image half the width and half the height of the original image
-    img = img.resize((round(img.size[0]*0.2), round(img.size[1]*0.2)))
+    img = img.resize((round(img.size[0]*0.5), round(img.size[1]*0.5)))
  
     draw = ImageDraw.Draw(img)
    
@@ -46,22 +44,18 @@ def main():
 
     # Print and draw detected objects.
     for obj in objs:
-      #print('-----------------------------------------')
+      print('-----------------------------------------')
      
-      print('score =', obj.score)
-      print(labels[obj.label_id]) 
+      #print('score =', obj.score)
+      if labels[obj.label_id]=='ampolla':
+          ampolla=ampolla+1 
       box = obj.bounding_box.flatten().tolist()
       #print('box =', box)
       draw.rectangle(box, outline='red')
-      
-      print('Subiendo imagen')
-      with open(img_output, "rb") as file:
-          # use FTP's STOR command to upload the file
-          ftp.storbinary(f"STOR /www/output.jpg", file)
-
+    print('Ampollas:'+ str(ampolla))
     if not objs:
       print('No objects detected.')
-
+    ampolla=0
     # Save image with bounding boxes.
     if img_output:
       img.save(img_output)
